@@ -1,0 +1,95 @@
+body{
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
+}
+#console {
+  font-size: 22px;
+  font-family: Monaco, monospace, fixed;
+}
+#console div.jquery-console-inner{
+  background:#333;
+  padding:0.5em;
+  overflow:auto;
+}
+#console div.jquery-console-prompt-box{
+  color:#fff; 
+}
+#console div.jquery-console-focus span.jquery-console-cursor {  
+  background:#fefefe; 
+  color:#333; 
+  font-weight:bold
+}
+#console div.jquery-console-message-error{
+  color:#ef0505; 
+  font-weight:bold;
+  padding:0.1em;
+}
+#console div.jquery-console-message-value,
+#console .reply
+{
+  color:#1ef02d; 
+  padding:0.1em;
+}
+#console .error{
+  color: #ff2848;
+}
+#console div.jquery-console-message-type{
+  color:#52666f; 
+  padding:0.1em;
+}
+#console span.jquery-console-prompt-label {
+  font-weight:bold;
+}
+#console .browser,
+#console .announcement
+{
+  color: #dbda74;
+}
+#console .console{
+  color: #369bdb;
+}
+#console{
+  margin-bottom: 10px;
+}
+#slideBoard{
+  -webkit-transition: all 1s ease-in-out;
+  position: absolute;
+  top: 0;
+  left: 0;
+  color: #fff;
+  background-color: rgba(0, 0, 0, 0);
+  
+}
+#slideBoard td{
+  font-family: Optima;
+  font-size: 70px;
+}
+#slideBoard.shown{
+  background-color: rgba(20, 20, 20, 0.95);
+  -webkit-transition: all 1s ease-in-out;
+}
+#slideBoard td{
+  opacity: 0;
+}
+#slideBoard.shown td{
+  opacity: 1;
+  -webkit-transition: all 1s ease-in-out;
+}
+#slideBoard code{
+}
+#slideBoard pre{
+  font-size: 35px;
+  line-height: 35px;
+  text-align: left;
+  width: 600px;
+}
+.hilite{
+  text-shadow: 0px 0px 10px rgba(255, 255, 255, 0.7);
+}
+
+#slideBoard pre.diagram{
+  width: 700px;
+  font-size: 22px;
+}

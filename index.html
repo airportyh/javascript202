@@ -1,0 +1,485 @@
+<!doctype html>
+<html>
+<head>
+<title>Javascript 202</title>
+<link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+<div id="console"></div>
+<table id="slideBoard" style="display: none">
+<tr><td align="center" valign="center">
+    
+</td></tr>
+</table>
+<script src="jquery.js"></script>
+<script src="jquery.console.js"></script>
+<script id="slides" type="text/slides">
+//Javascript 202
+
+//Previously...
+
+//Javascript != Java
+
+//Closure == <br/> ((Double Rainbow))
+
+//Functions as Methods
+
+//Today
+
+//Arrays
+
+//Object-Oriented<br/>
+//Programming
+
+//DOM API
+
+//Arrays
+
+[1, 2, 3, 4]
+
+Array(1, 2, 3, 4)
+
+new Array(1, 2, 3, 4)
+
+new Array(25)
+
+['a', 2, {'c': 3}, [4], null]
+
+var arr = [1, 2, 3, 4]
+
+arr[0]
+
+arr[1]
+
+arr.length
+
+arr[5] = 5
+
+arr.length
+
+arr.push(6)
+
+arr
+
+arr.pop()
+
+arr
+
+arr.unshift(0)
+
+arr
+
+arr.concat([7, 8, 9])
+
+arr.join(':')
+
+arr.slice(2)
+
+arr.slice(2, 4)
+
+arr.slice(0) // make a copy
+
+arr.splice(2, 1, 8, 9)
+
+//Gotcha: Array sort()
+
+[1, 3, 10, 25].sort()
+
+[1, 3, 10, 25].sort(function(a, b){
+    return a - b
+})
+
+//&lt;/Arrays&gt;
+
+//OOP in Javascript
+
+//POLL: You know OOP?
+
+//POLL: Is Javascript OOP?
+
+//Some History
+
+//1970s
+
+//Xerox PARC
+
+//Alan Kay
+
+//Smalltalk
+
+//Popularized OOP
+
+//Classical Inheritance
+
+//<pre><code>class Cat < Animal
+//  def initialize(name)
+//    @name = name
+//  end
+//  
+//  def speak()
+//    return "#{@name} sez MEOW!"
+//  end
+//end</code></pre>
+
+//<pre><code><span class="hilite">class Cat</span> < Animal
+//  def initialize(name)
+//    @name = name
+//  end
+//  
+//  def speak()
+//    return "#{@name} sez MEOW!"
+//  end
+//end</code></pre>
+
+//<pre><code>class Cat < <span class="hilite">Animal</span>
+//  def initialize(name)
+//    @name = name
+//  end
+//  
+//  def speak()
+//    return "#{@name} sez MEOW!"
+//  end
+//end</code></pre>
+
+//<pre><code>class Cat < Animal
+//  def initialize(name)
+//    <span class="hilite">@name</span> = name
+//  end
+//  
+//  def speak()
+//    return "#{<span class="hilite">@name</span>} sez MEOW!"
+//  end
+//end</code></pre>
+
+//<pre><code>class Cat < Animal
+//  def initialize(name)
+//    @name = name
+//  end
+//  
+//  <span class="hilite">def speak()
+//    return "#{@name} sez MEOW!"
+//  end</span>
+//end</code></pre>
+
+//<pre><code>class Cat < Animal
+//  <span class="hilite">def initialize(name)
+//    @name = name
+//  end</span>
+//  
+//  def speak()
+//    return "#{@name} sez MEOW!"
+//  end
+//end</code></pre>
+
+//<pre><code>kitty = Cat.new('meow')</code></pre>
+
+//<pre><code>puts kitty.speak()</code></pre>
+
+//<code><pre>moreKitten = kitty.reproduce()</code></pre>
+
+//1986
+
+//Xerox PARC
+
+//David Ungar<br/>
+//Randall Smith
+
+//Self
+
+//JIT(Just in Time)
+
+//Prototype Inheritance
+
+//No Classes
+
+//<img src="self.png"/><br/>
+//Inheritance == a parent link
+
+//__proto__
+
+var john = {firstName: 'John', lastName: 'Doe'}
+
+var jane = {firstName: 'Jane'}
+
+jane.__proto__ = john
+
+//john is a prototype of jane
+
+jane.lastName
+
+jane.firstName
+
+john.hair = "brown"
+
+jane.hair
+
+john.speak = function(){
+    console.log('Hi, I am', this.firstName, 
+        this.lastName, ',', 'and my hair is', this.hair, '.')
+}
+
+jane.speak()
+
+john.speak()
+
+jane.lastName = 'Smith'
+
+jane.speak()
+
+delete jane.lastName
+
+jane.lastName
+
+//&lt;/__proto__&gt;
+
+//but, some bad News
+
+//__proto__ doesn't work in IE
+
+//We don't actually use it
+
+//It's there, we just can't see it
+
+//Constructors
+
+function Animal(){}
+
+var cow = new Animal
+
+cow.__proto__ === Animal.prototype
+
+//Constructor.prototype
+
+//Inheritance w<br/>
+//Constructors
+
+function Cat(){}
+
+Cat.prototype = new Animal
+
+Cat.prototype.constructor = Cat
+
+var kitty = new Cat()
+
+var protoAnimal = Animal.prototype
+
+var protoCat = Cat.prototype
+
+kitty.__proto__ === protoCat
+
+kitty instanceof Cat
+
+kitty.__proto__.__proto__ === protoAnimal
+
+kitty instanceof Animal
+
+protoCat.speak = function(){
+    console.log('Meow')
+}
+
+kitty.speak()
+
+protoAnimal.reproduce = function(){
+    return new this.constructor()
+}
+
+var kitten = kitty.reproduce()
+
+//<pre class="diagram">
+//--------         -----
+//|Animal|         |Cat|
+//--------         -----
+//     \               \
+//   -------------      ----------       -------
+//   |protoAnimal|<-----|protoCat|<------|kitty|
+//   -------------      ----------       -------       
+//       
+//</pre>
+
+//Object
+
+kitty instanceof Object
+
+//<pre class="diagram">
+//--------       --------               -----
+//|Object|       |Animal|               |Cat|
+//--------       --------               -----
+//     \                 \                   \
+//------------------    -------------    ----------    -------
+//|Object.prototype|<---|protoAnimal|<---|protoCat|<---|kitty|
+//------------------    -------------    ----------    -------
+//           
+//</pre>
+
+//Extending Core Types
+
+//Extending Arrays
+
+Array.prototype.max = function(){
+    var max = null
+    for (var i = 0; i < this.length; i++)
+        if (max === null || this[i] > max)
+            max = this[i]
+    return max
+}
+
+[1, 2, 3].max()
+
+//Extending Strings
+
+String.prototype.trim = function(){
+    return this.replace(/^[ \t\n]*/,'').replace(/[ \t\n]*$/, '')
+}
+
+'    abc    '.trim()
+
+//Extending Numbers
+
+Number.prototype.round = function(){
+    return Math.round(this)
+}
+
+3.7.round()
+
+//Extending Objects
+
+Object.prototype.copy = function(){
+    var copy = {}
+    for (var key in this)
+        copy[key] = this[key]
+    return copy
+}
+
+//Proceed with Caution
+
+function Person(name){
+    this.name = name
+}
+
+var bob = new Person('Bob')
+
+var protoPerson = Person.prototype
+
+Person.prototype.foo = 'bar'
+
+for (var key in bob)
+    console.log(key + ': ' + bob[key])
+    
+for (var key in bob)
+    if (bob.hasOwnProperty(key))
+        console.log(key + ': ' + bob[key])
+        
+//&lt;/PrototypeInheritance&gt;
+        
+//Javascript in the Browser
+
+//Tags/Elements
+
+var p = document.createElement('p')
+
+p
+
+var a = document.createElement('a')
+
+a.setAttribute('href', 'http://www.google.com')
+
+a.getAttribute('href')
+
+a.href
+
+a.style.float = 'left' // CSS
+
+var text = document.createTextNode('Google')
+
+text
+
+text.data
+
+a.appendChild(text)
+
+p.appendChild(a)
+
+p.innerHTML
+
+p.innerHTML = '<a href="http://www.bing.com">Bing</a>'
+
+p.innerHTML
+
+p.childNodes
+
+p.childNodes.length
+
+a = p.childNodes[0]
+
+a.tagName
+
+p.tagName
+
+document.body.appendChild(p)
+
+function printTree(elm, indent){
+    var ret
+    if (elm.nodeType == Node.TEXT_NODE)
+        ret = indent + elm.data + '\n'
+    else if(elm.nodeType == Node.ELEMENT_NODE)
+        ret = indent + elm.tagName + '\n'
+    for (var i = 0; i < elm.childNodes.length; i++){
+        ret += printTree(elm.childNodes[i], indent + '  ')
+    }
+    return ret
+}
+
+printTree(p, '')
+
+a.id = 'bingLink'
+
+document.getElementById('bingLink')
+
+var links = document.getElementsByTagName('a')
+
+links
+
+links.length
+
+links[0]
+
+a.className = 'link'
+
+a.getAttribute('class')
+
+links = document.getElementsByClassName('link')
+
+links.length
+
+links[0]
+
+a.style.position = 'absolute'
+
+a.style['background-color'] = 'white'
+
+a.style.top = '1px'
+
+a.style.right = '20px'
+
+a.style['font-size'] = '40px'
+
+//Event Handlers
+
+a.addEventListener('mouseover', function(){
+    console.log('Wanna bing?')
+})
+
+a.addEventListener('click', function(){
+    console.log('You bang!')
+})
+
+//More bad news
+
+//Browser Differences
+
+open('http://tutti.tobyho.com')
+
+</script>
+<script src="setup.js"></script>
+</body>
+</html>

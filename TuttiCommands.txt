@@ -1,0 +1,46 @@
+> navigator.userAgent
+
+> [1,2,3,].length
+
+> [1,2,3].map(function(n){
+	return n * 2
+})
+
+> var obj = {attr1: 1, }
+
+Multiline text in text inputs
+> var text = document.createElement('input')
+> text.type = 'text'
+> text.value = 'abc\ndef'
+> text.value
+
+> 'abc'[2]
+> 'abc'.charAt(2)
+
+> var div = document.createElement('div')
+> var span = document.createElement('span')
+> div.appendChild(span)
+> div.innerHTML
+
+> span.className = 'hilite'
+> div.innerHTML
+
+> span.employeeNo = 234
+> div.innerHTML
+
+> span.setAttribute('width', '100')
+> div.innerHTML
+
+> span.attributes
+> for (var i = 0; i < span.attributes.length; i++){
+    var attr = span.attributes[i]
+    console.log(attr.name + ' = ' + attr.value)
+  }
+
+> div = document.createElement('div')
+> var markup = '<div>\n    <p>Hello <em>World!</em>.\n</div>'
+> markup
+> div.innerHTML = markup
+> div.innerHTML
+> div.childNodes.length
+
